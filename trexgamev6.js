@@ -6,9 +6,9 @@ let isJumping = false;
 let gravity = 0.9;
 let score = 0;
 
-// Movimento do Dino
+// Movimento do Dino com a tecla "Space"
 document.addEventListener('keydown', (event) => {
-    if (event.code === 'Space' && !isJumping) { // Verifica se a tecla é "Space"
+    if (event.code === 'Space' && !isJumping) { // Verifica se a tecla pressionada é "Espaço"
         isJumping = true;
         jump();
     }
@@ -18,7 +18,7 @@ document.addEventListener('keydown', (event) => {
 function jump() {
     let jumpHeight = 0;
     let jumpInterval = setInterval(() => {
-        if (jumpHeight < 150) {
+        if (jumpHeight < 150) { // Altura do pulo
             dino.style.bottom = `${parseInt(dino.style.bottom) + 5}px`;
             jumpHeight += 5;
         } else {
@@ -31,7 +31,7 @@ function jump() {
 // Função de queda
 function fall() {
     let fallInterval = setInterval(() => {
-        if (parseInt(dino.style.bottom) > 20) {
+        if (parseInt(dino.style.bottom) > 20) { // Verifica se o Dino ainda está acima do chão
             dino.style.bottom = `${parseInt(dino.style.bottom) - gravity}px`;
         } else {
             isJumping = false;
