@@ -3,12 +3,12 @@ const ground = document.getElementById('ground');
 const scoreElement = document.getElementById('score');
 const gameContainer = document.getElementById('game-container');
 let isJumping = false;
-let gravity = 0.9;
+let gravity = 0.9;  // A gravidade para o movimento de queda do Dino
 let score = 0;
 
-// Movimento do Dino com a tecla "Space"
+// Função que faz o Dino pular ao pressionar a tecla "Space"
 document.addEventListener('keydown', (event) => {
-    if (event.code === 'Space' && !isJumping) { // Verifica se a tecla pressionada é "Espaço"
+    if (event.code === 'Space' && !isJumping) { // Verifica se a tecla "Espaço" foi pressionada
         isJumping = true;
         jump();
     }
@@ -18,26 +18,26 @@ document.addEventListener('keydown', (event) => {
 function jump() {
     let jumpHeight = 0;
     let jumpInterval = setInterval(() => {
-        if (jumpHeight < 150) { // Altura do pulo
-            dino.style.bottom = `${parseInt(dino.style.bottom) + 5}px`;
+        if (jumpHeight < 150) { // O máximo que o Dino vai subir
+            dino.style.bottom = `${parseInt(dino.style.bottom) + 5}px`; // Subir o Dino
             jumpHeight += 5;
         } else {
-            clearInterval(jumpInterval);
-            fall();
+            clearInterval(jumpInterval); // Para o pulo quando atingir o topo
+            fall(); // Inicia a queda
         }
-    }, 20);
+    }, 20); // Faz o pulo acontecer a cada 20ms
 }
 
 // Função de queda
 function fall() {
     let fallInterval = setInterval(() => {
-        if (parseInt(dino.style.bottom) > 20) { // Verifica se o Dino ainda está acima do chão
-            dino.style.bottom = `${parseInt(dino.style.bottom) - gravity}px`;
+        if (parseInt(dino.style.bottom) > 20) { // Se o Dino ainda estiver acima do chão
+            dino.style.bottom = `${parseInt(dino.style.bottom) - gravity}px`; // O Dino vai cair
         } else {
-            isJumping = false;
-            clearInterval(fallInterval);
+            isJumping = false; // Pulo finalizado
+            clearInterval(fallInterval); // Para a queda
         }
-    }, 20);
+    }, 20); // Faz a queda acontecer a cada 20ms
 }
 
 // Gerar obstáculos (Cactos)
