@@ -7,8 +7,8 @@ let gravity = 0.9;
 let score = 0;
 
 // Movimento do Dino
-document.addEventListener('keydown', () => {
-    if (!isJumping) {
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space' && !isJumping) { // Verifica se a tecla é "Space"
         isJumping = true;
         jump();
     }
